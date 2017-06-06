@@ -32,9 +32,9 @@ class CurlDriver implements DriverInterface
      */
     public function __destruct()
     {
-        if (null !== self::$ch) {
+        // Open cURL session type is 'resource', closed is 'unknown'
+        if (gettype($this->curlSession) == 'resource') {
             curl_close(self::$ch);
-            self::$ch = null; // Nulling to avoid calling curl_close again
         }
     }
 
